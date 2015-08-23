@@ -2,16 +2,57 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/main.css"/>
+    <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.4/material.indigo-pink.min.css">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <title>Simple Game of Life done with JavaScript and HTML</title>
     <link>
 </head>
 <body>
-<header>
-    <h1>Game of life</h1>
-</header>
-<div id="content"></div>
-<button>INIT</button>
+<div class="mdl-grid">
+    <div class="mdl-cell mdl-cell--4-col"></div>
+    <div class="mdl-cell mdl-cell--4-col">
+        <h1>Game of life</h1>
+
+        <div id="gameArea" class="hidden">
+            <div id="content">
+            </div>
+            <button id="initGame"
+                    class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+                Go
+            </button>
+        </div>
+        <div id="form_init">
+            <form id="form1" action="#">
+                <div class="mdl-textfield mdl-js-textfield">
+                    <input class="mdl-textfield__input" type="text" id="rows" pattern="[0-9]*"/>
+                    <label class="mdl-textfield__label" for="rows">Number of rows...</label>
+                    <span class="mdl-textfield__error">Input is not a number!</span>
+                </div>
+                <br/>
+
+                <div class="mdl-textfield mdl-js-textfield">
+                    <input class="mdl-textfield__input" type="text" id="files" pattern="[0-9]*"/>
+                    <label class="mdl-textfield__label" for="files">Number of files...</label>
+                    <span class="mdl-textfield__error">Input is not a number!</span>
+                </div>
+            </form>
+            <br/>
+            <button id="sendForm"
+                    class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+                Send
+            </button>
+        </div>
+    </div>
+    <div class="mdl-cell mdl-cell--4-col">
+        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent refresh float-right">
+            <i class="material-icons">refresh</i>
+        </button>
+    </div>
+</div>
 <script src="js/main.js"></script>
+<script src="https://storage.googleapis.com/code.getmdl.io/1.0.4/material.min.js"></script>
 </body>
 </html>

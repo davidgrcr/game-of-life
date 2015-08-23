@@ -1,12 +1,20 @@
 /**
  * Created by david on 5/07/15.
  */
+
+function putBack() {
+    document.getElementById('form_init').classList.remove("hidden");
+    document.getElementById('gameArea').classList.add("hidden");
+}
+
 var gameOfLive = function () {
 
-    var generateTable = function () {
+    var generateTable = function (rowLength, columnLength) {
         var $content = document.getElementById('content'),
-            rowLength = 15, columnLength = 15,
-            $table = '<table>';
+        //rowLength = row, columnLength = files,
+            $table = '<table class="">',
+            $gameArea = document.getElementById('gameArea');
+
         for (var row = 0; row < rowLength; row++) {
             $table += '<tr>';
             for (var column = 0; column < columnLength; column++) {
@@ -18,6 +26,7 @@ var gameOfLive = function () {
         $table += '</table>';
 
         $content.innerHTML = $table;
+        $gameArea.classList.remove('hidden');
 
     };
 
@@ -117,6 +126,7 @@ var gameOfLive = function () {
             }
             if (!liveOrDie()) {
                 myStopFunction(myInterval);
+                putBack();
             }
             console.log(k++);
         }, 800);
@@ -124,19 +134,69 @@ var gameOfLive = function () {
     };
 
     var addListenerToInitButton = function () {
-        var $button = document.querySelector("button");
+        var $button = document.querySelector("button#initGame");
         $button.addEventListener("click", start, false);
     };
 
     // public functions
     return {
-        init: function () {
-            generateTable();
+        init: function (row, files) {
+            generateTable(row, files);
             addEventListeners();
             addListenerToInitButton();
         }
     };
-
 }();
 
-gameOfLive.init();
+var Form = {
+    div_form: '',
+    form: '',
+    btn: '',
+    rows: '',
+    files: '',
+    init: function () {
+        Form.form = document.getElementById('form1'),
+            Form.btn = document.getElementById('sendForm'),
+            Form.div_form = document.getElementById('form_init');
+
+        Form.addEventListeners();
+
+    },
+    addEventListeners: function () {
+        Form.btn.addEventListener("click", Form.checkDataFilled, false);
+        Form.form.addEventListener("keypress", Form.checkKeyPress, false);
+    },
+    checkKeyPress: function (e) {
+        if (e.keyCode == 13) {
+            Form.btn.click();
+        }
+    },
+    checkDataFilled: function () {
+        Form.rows = document.getElementById('rows'),
+            Form.files = document.getElementById('files');
+        var checkRows = Form.rows.value == '' || Form.rows.value < 1 || isNaN(Form.rows.value),
+            checkFiles = Form.files.value == '' || Form.files.value < 1 || isNaN(Form.files.value);
+
+        //console.log(checkRows, checkFiles);
+        //console.log(Form.rows.value, Form.files.value);
+        if (checkRows || checkFiles) {
+            alert("Is not a number");
+            return false;
+        } else {
+            //alert("we gonna play");
+            //console.log(Form.div_form);
+            Form.div_form.classList.add("hidden");
+            gameOfLive.init(Form.rows.value, Form.files.value);
+        }
+    }
+};
+
+(function () {
+    var $btn = document.querySelector("button.refresh");
+    $btn.addEventListener("click", function () {
+        location.reload();
+    }, false);
+})();
+
+Form.init();
+

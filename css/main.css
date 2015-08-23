@@ -1,12 +1,8 @@
 #content {
-    width: 550px;
+    width: auto;
     height: 550px;
     background-color: #cecece;
     margin: 10px auto;
-}
-
-h1 {
-    text-align: center;
 }
 
 table {
@@ -18,21 +14,14 @@ table td {
     background-color: white;
 }
 
-button {
-    margin: 0 auto;
-    width: 10%;
-    display: block;
-    background: rgb(99, 170, 239);
-    line-height: 2em;
-    color: #ffffff;
-    border: 1px solid black;
-    cursor: pointer;
-}
-
-button:hover {
-    background: rgb(210, 217, 223);
-}
-
 td.live {
     background-color: black;
+}
+
+.hidden {
+    display: block;
+}
+
+.float-right {
+    float: right;
 }
