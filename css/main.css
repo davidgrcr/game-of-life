@@ -1,17 +1,24 @@
-#content{
+#content {
     width: 550px;
     height: 550px;
     background-color: #cecece;
     margin: 10px auto;
 }
-table{
+
+h1 {
+    text-align: center;
+}
+
+table {
     width: 100%;
     height: 100%;
 }
-table td{
+
+table td {
     background-color: white;
 }
-button{
+
+button {
     margin: 0 auto;
     width: 10%;
     display: block;
@@ -21,9 +28,11 @@ button{
     border: 1px solid black;
     cursor: pointer;
 }
-button:hover{
+
+button:hover {
     background: rgb(210, 217, 223);
 }
-td.live{
+
+td.live {
     background-color: black;
 }
