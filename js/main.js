@@ -1,16 +1,16 @@
 /**
  * Created by david on 5/07/15.
  */
-var liveGame = function () {
+var gameOfLive = function () {
 
     var generateTable = function () {
-        var $content = document.getElementById('content');
-        var filaLength = 15, columnLength = 15;
-        var $table = '<table>';
-        for (var fila = 0; fila < filaLength; fila++) {
+        var $content = document.getElementById('content'),
+            rowLength = 15, columnLength = 15,
+            $table = '<table>';
+        for (var row = 0; row < rowLength; row++) {
             $table += '<tr>';
             for (var column = 0; column < columnLength; column++) {
-                $table += '<td data_position="' + fila + '_' + column + '"></td>';
+                $table += '<td data_position="' + row + '_' + column + '"></td>';
             }
             $table += '</tr>';
         }
@@ -19,23 +19,23 @@ var liveGame = function () {
 
         $content.innerHTML = $table;
 
-    }
+    };
 
-    var doSomething = function (e) {
+    var handleLiveClass = function (e) {
         var element = e.target;
-        var position = element.getAttribute('data_position');
+        //var position = element.getAttribute('data_position');
         if (element.classList.contains('live')) {
             element.classList.remove("live");
         } else {
             element.classList.add("live");
         }
 
-    }
+    };
 
     var addEventListeners = function () {
         var theParent = document.querySelector("table");
-        theParent.addEventListener("click", doSomething, false);
-    }
+        theParent.addEventListener("click", handleLiveClass, false);
+    };
 
     var isAlive = function ($td) {
         var bool = false;
@@ -46,12 +46,12 @@ var liveGame = function () {
         }
 
         return bool;
-    }
+    };
 
     var getAliveNeighbors = function (f, c) {
-        var numberAlive = 0;
-        var fLess = f - 1, fPlus = parseInt(f) + 1;
-        var columnLess = c - 1, columnPlus = parseInt(c) + 1;
+        var numberAlive = 0,
+            fLess = f - 1, fPlus = parseInt(f) + 1,
+            columnLess = c - 1, columnPlus = parseInt(c) + 1;
 
         if (isAlive(document.querySelector("[data_position='" + fLess + "_" + c + "']")))numberAlive++;
         if (isAlive(document.querySelector("[data_position='" + fLess + "_" + columnLess + "']")))numberAlive++;
@@ -63,7 +63,7 @@ var liveGame = function () {
         if (isAlive(document.querySelector("[data_position='" + fLess + "_" + columnPlus + "']")))numberAlive++;
 
         return numberAlive;
-    }
+    };
 
     var check = function (element) {
         // element.style.backgroundColor = "red";
@@ -79,7 +79,7 @@ var liveGame = function () {
                 element.classList.add("tolive");
             }
         }
-    }
+    };
 
     var liveOrDie = function () {
         var cells = document.querySelectorAll("td");
@@ -98,11 +98,11 @@ var liveGame = function () {
         }
 
         return somethingHappens;
-    }
+    };
 
     var myStopFunction = function (myInterval) {
         clearInterval(myInterval);
-    }
+    };
 
 
     var start = function () {
@@ -121,12 +121,12 @@ var liveGame = function () {
             console.log(k++);
         }, 800);
 
-    }
+    };
 
     var addListenerToInitButton = function () {
         var $button = document.querySelector("button");
         $button.addEventListener("click", start, false);
-    }
+    };
 
     // public functions
     return {
@@ -135,8 +135,8 @@ var liveGame = function () {
             addEventListeners();
             addListenerToInitButton();
         }
-    }
+    };
 
 }();
 
-liveGame.init();
+gameOfLive.init();
