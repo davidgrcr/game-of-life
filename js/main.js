@@ -163,7 +163,7 @@ var Form = {
 
     },
     addEventListeners: function () {
-        Form.btn.addEventListener("click", Form.checkDataFilled, false);
+        Form.btn.addEventListener("click", Form.canYouPlay, false);
         Form.form.addEventListener("keypress", Form.checkKeyPress, false);
     },
     checkKeyPress: function (e) {
@@ -171,11 +171,11 @@ var Form = {
             Form.btn.click();
         }
     },
-    checkDataFilled: function () {
+    canYouPlay: function () {
         Form.rows = document.getElementById('rows'),
             Form.files = document.getElementById('files');
-        var checkRows = Form.rows.value == '' || Form.rows.value < 1 || isNaN(Form.rows.value),
-            checkFiles = Form.files.value == '' || Form.files.value < 1 || isNaN(Form.files.value);
+        var checkRows = Form.checkIsNotPositiveNumber(Form.rows.value),
+            checkFiles = Form.checkIsNotPositiveNumber(Form.files.value);
 
         //console.log(checkRows, checkFiles);
         //console.log(Form.rows.value, Form.files.value);
@@ -188,6 +188,12 @@ var Form = {
             Form.div_form.classList.add("hidden");
             gameOfLive.init(Form.rows.value, Form.files.value);
         }
+    },
+    checkIsNotPositiveNumber: function (number) {
+        return number == '' || number < 1 || isNaN(number);
+    },
+    sayHello: function () {
+        return "Hello";
     }
 };
 
