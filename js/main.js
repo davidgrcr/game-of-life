@@ -163,6 +163,10 @@ var Form = {
 
     },
     addEventListeners: function () {
+        console.log(Form.btn);
+        if (Form.btn == null || Form.form == null) {
+            throw new TypeError("Cannot read property 'addEventListener' of null");
+        }
         Form.btn.addEventListener("click", Form.canYouPlay, false);
         Form.form.addEventListener("keypress", Form.checkKeyPress, false);
     },
