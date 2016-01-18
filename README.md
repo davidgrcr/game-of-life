@@ -1,4 +1,4 @@
-# Game of Game
+# Game of life
 
 Simple Game of Life done with JavaScript and HTML
 
